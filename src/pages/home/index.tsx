@@ -11,6 +11,7 @@ export interface PostsProps {
   title: string
   body: string
   created_at: Date
+  number: number
 }
 
 export function Home() {
@@ -58,6 +59,7 @@ export function Home() {
                 title={post.title}
                 body={post.body}
                 created_at={post.created_at}
+                number={post.number}
               />
             ))
           : filteredPosts.map((post) => (
@@ -66,6 +68,7 @@ export function Home() {
                 title={post.title}
                 body={post.body}
                 created_at={post.created_at}
+                number={post.number}
               />
             ))}
       </ContainerCards>

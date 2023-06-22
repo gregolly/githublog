@@ -4,13 +4,14 @@ import { CardWrapper, LinkCard } from './style'
 export interface CardPostProps {
   title: string
   body: string
-  created_at: Date
+  created_at: string
+  number: number
 }
 
 // eslint-disable-next-line camelcase
-export function CardPost({ title, body, created_at }: CardPostProps) {
+export function CardPost({ title, body, created_at, number }: CardPostProps) {
   return (
-    <LinkCard href="/post">
+    <LinkCard href={`/post/${number}`}>
       <CardWrapper>
         <div>
           <h3>{title.substring(0, 60) + '...'}</h3>
