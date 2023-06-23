@@ -6,7 +6,7 @@ export const ContainerCards = styled.div`
   margin-top: 3rem;
 
   display: grid;
-  grid-template-columns: repeat(auto-fill, 580px);
+  grid-template-columns: 1fr 1fr;
   gap: 2rem;
 }
 `
