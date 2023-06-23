@@ -1,27 +1,35 @@
-import { ChangeEvent } from 'react'
 import { SearchFormWrapper } from './styles'
+import * as z from 'zod'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+
+const searchPosts = z.object({
+  query: z.string(),
+})
+
+type SearchFromPosts = z.infer<typeof searchPosts>
 
 interface SearchFormProps {
-  onChangeValue: (value: string) => void
+  fetchPosts: (value: string) => void
   amountPosts: number
 }
 
-export function SearchForm({ onChangeValue, amountPosts }: SearchFormProps) {
-  function handleChangeInput(event: ChangeEvent<HTMLInputElement>) {
-    onChangeValue(event.target.value)
+export function SearchForm({ amountPosts, fetchPosts }: SearchFormProps) {
+  const { register, handleSubmit } = useForm<SearchFromPosts>({
+    resolver: zodResolver(searchPosts),
+  })
+
+  function handleSubmitInput(data: SearchFromPosts) {
+    fetchPosts(data.query.toLowerCase())
   }
 
   return (
-    <SearchFormWrapper>
+    <SearchFormWrapper onSubmit={handleSubmit(handleSubmitInput)}>
       <div>
         <span>Publicações</span>
         <span>{amountPosts} publicações</span>
       </div>
-      <input
-        type="text"
-        placeholder="Buscar conteúdo"
-        onChange={handleChangeInput}
-      />
+      <input type="text" placeholder="Buscar conteúdo" {...register('query')} />
     </SearchFormWrapper>
   )
 }

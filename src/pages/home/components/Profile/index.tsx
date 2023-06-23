@@ -6,7 +6,8 @@ import { ContentContainer, ListInfo, ProfileWrapper } from './style'
 import { OutsideLinkIcon } from '../../../../components/icons/OutsideLinkIcon'
 
 import { useEffect, useState } from 'react'
-import axios from 'axios'
+
+import { api } from '../../../../lib/axios'
 
 interface ProfileProps {
   avatar_url: string
@@ -24,7 +25,7 @@ export function Profile() {
   }, [])
 
   async function getPostFromGithubApi() {
-    const response = await axios.get<ProfileProps>(
+    const response = await api.get<ProfileProps>(
       'http://api.github.com/users/gregolly',
     )
 

@@ -1,6 +1,6 @@
 import { Content } from './components/Content'
 import { PostInfo } from './components/PostInfo'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { useParams } from 'react-router-dom'
 
 import { PostProps } from '../../@types/post-props'
@@ -10,17 +10,17 @@ export function Post() {
   const { postid } = useParams()
   const [content, setContent] = useState<PostProps>()
 
-  useEffect(() => {
-    getPostByID()
-  })
-
-  async function getPostByID() {
+  const getPostByID = useCallback(async () => {
     const response = await axios.get(
       `https://api.github.com/gregolly/githublog/issues/${postid}`,
     )
 
     setContent(response.data)
-  }
+  }, [postid])
+
+  useEffect(() => {
+    getPostByID()
+  }, [getPostByID])
 
   return (
     <>
