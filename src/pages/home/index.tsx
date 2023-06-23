@@ -10,7 +10,7 @@ export interface PostsProps {
   id: number
   title: string
   body: string
-  created_at: Date
+  created_at: string
   number: number
 }
 
