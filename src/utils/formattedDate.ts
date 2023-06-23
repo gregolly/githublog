@@ -1,7 +1,7 @@
 import { formatDistanceToNow } from 'date-fns'
 
-export function formattedDate(createdAt: string) {
-  const distance = formatDistanceToNow(new Date(createdAt), {
+export function formattedDate(value: string) {
+  const distance = formatDistanceToNow(new Date(value), {
     addSuffix: true,
   })
 
