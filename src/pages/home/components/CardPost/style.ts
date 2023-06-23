@@ -2,6 +2,12 @@ import { styled } from 'styled-components'
 
 export const LinkCard = styled.a`
   text-decoration: none;
+  border: 1px solid transparent;
+
+  &:hover {
+    border: 1px solid ${({ theme }) => theme.colors.baseSpan};
+    border-radius: 10px;
+  }
 `
 
 export const CardWrapper = styled.article`
