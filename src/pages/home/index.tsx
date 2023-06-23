@@ -27,7 +27,7 @@ export function Home() {
 
   async function getIssuesFromGithubApi() {
     const response = await axios.get(
-      'https://api.github.com/search/issues?q=lorem%20repo:gregolly/github-blog',
+      'https://api.github.com/search/issues?q=lorem%20repo:gregolly/githublog',
     )
 
     setPosts(response.data.items)

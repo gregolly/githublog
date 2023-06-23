@@ -16,7 +16,7 @@ export function Post() {
 
   async function getPostByID() {
     const response = await axios.get(
-      `https://api.github.com/repos/gregolly/github-blog/issues/${postid}`,
+      `https://api.github.com/gregolly/githublog/issues/${postid}`,
     )
 
     setContent(response.data)
