@@ -9,6 +9,7 @@ import { ContentProps } from '../../../../@types/content-props'
 import { formattedDate } from '../../../../utils/formattedDate'
 
 export function PostInfo({ content }: ContentProps) {
+  console.log(content.created_at)
   return (
     <PostInfoWrapper>
       <div>
@@ -25,11 +26,11 @@ export function PostInfo({ content }: ContentProps) {
       <ListInfo>
         <li>
           <GithubIcon width={18} height={18} />
-          {content?.user.login}
+          {content?.user?.login}
         </li>
         <li>
           <CalendarIcon width={18} height={18} />
-          {formattedDate(content?.created_at)}
+          {formattedDate(content?.created_at) ?? ''}
         </li>
         <li>
           <CommentIcon width={18} height={18} />
