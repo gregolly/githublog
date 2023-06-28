@@ -15,12 +15,13 @@ interface SearchFormProps {
 }
 
 export function SearchForm({ amountPosts, fetchPosts }: SearchFormProps) {
-  const { register, handleSubmit } = useForm<SearchFromPosts>({
+  const { register, handleSubmit, reset } = useForm<SearchFromPosts>({
     resolver: zodResolver(searchPosts),
   })
 
   function handleSubmitInput(data: SearchFromPosts) {
     fetchPosts(data.query.toLowerCase())
+    reset()
   }
 
   return (
