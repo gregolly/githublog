@@ -4,18 +4,22 @@ import { useEffect, useState, useCallback } from 'react'
 import { useParams } from 'react-router-dom'
 
 import { PostProps } from '../../@types/post-props'
-import axios from 'axios'
+import { api } from '../../lib/axios'
 
 export function Post() {
   const { postid } = useParams()
-  const [content, setContent] = useState<PostProps>()
+  const [content, setContent] = useState<PostProps>({} as PostProps)
 
   const getPostByID = useCallback(async () => {
-    const response = await axios.get(
-      `https://api.github.com/gregolly/githublog/issues/${postid}`,
-    )
-
-    setContent(response.data)
+    try {
+      const response = await api.get(
+        `repos/gregolly/githublog/issues/${postid}`,
+      )
+      console.log(response.data)
+      setContent(response.data)
+    } catch (erro) {
+      console.log('Deu algum erro na requisicao da api', erro)
+    }
   }, [postid])
 
   useEffect(() => {
