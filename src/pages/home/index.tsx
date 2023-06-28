@@ -21,7 +21,9 @@ export function Home() {
 
   const fetchPosts = useCallback(async (query?: string) => {
     const responseSearch = await api.get(
-      `/search/issues?q=${query}%20repo:gregolly/githublog`,
+      `/search/issues?q=${
+        query ?? ''
+      }is:issue%20is:open%20repo:gregolly/githublog`,
     )
 
     setPosts(responseSearch.data.items)
@@ -36,15 +38,16 @@ export function Home() {
       <Profile />
       <SearchForm amountPosts={amountPosts} fetchPosts={fetchPosts} />
       <ContainerCards>
-        {posts.map((post) => (
-          <CardPost
-            key={post.id}
-            title={post.title}
-            body={post.body}
-            created_at={post.created_at}
-            number={post.number}
-          />
-        ))}
+        {posts &&
+          posts.map((post) => (
+            <CardPost
+              key={post.id}
+              title={post.title}
+              body={post.body}
+              created_at={post.created_at}
+              number={post.number}
+            />
+          ))}
       </ContainerCards>
     </div>
   )
