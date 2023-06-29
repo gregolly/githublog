@@ -9,7 +9,9 @@ import { ContentProps } from '../../../../@types/content-props'
 import { formattedDate } from '../../../../utils/formattedDate'
 
 export function PostInfo({ content }: ContentProps) {
-  console.log(content.created_at)
+  if (!content.title) {
+    return null
+  }
   return (
     <PostInfoWrapper>
       <div>

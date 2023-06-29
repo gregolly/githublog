@@ -2,6 +2,9 @@ import { ContentProps } from '../../../../@types/content-props'
 import { ContentWrapper } from './styles'
 
 export function Content({ content }: ContentProps) {
+  if (!content.title) {
+    return null
+  }
   return (
     <ContentWrapper>
       <div>
